@@ -6,7 +6,7 @@ import { useGlobalState } from '../state';
 
 
 // TODO: add a default image in case of poster/backdrop absence
-const image_resource_unavailable = "";
+const image_unavailable = "";
 
 export const MovieAbout = () => {
 
@@ -36,7 +36,6 @@ export const MovieAbout = () => {
         return (<Loading />);
     else
     {
-        
         document.title = movieTitle;
         return (
             <section>
@@ -55,22 +54,23 @@ export const MovieList = ({movies}) => {
 
     const {API_Config} = useGlobalState();
     const {secure_base_url, poster_sizes} = API_Config;
-    const url = secure_base_url + '/' + poster_sizes[1];
+    const url = secure_base_url + '/' + poster_sizes[2];
     return (
-        <section>
-            {
-                movies.map((mov) => {
-                    const {id: mid, title: movieTitle, poster_path: poster} = mov;
-                    return (
-                        <Link to={`/movies/${mid}`} key={mid}>
-                            <article>
-                                <img src={url + poster} alt={'poster: ' + movieTitle} />
-                                <p>{movieTitle}</p>
-                            </article>
-                        </Link>
-                    );
-                })
-            }
+        <section className='canvas'>
+            <div className='grid'>
+                {movies.map((mov) => {
+                        const {id: mid, title: movieTitle, poster_path: poster} = mov;
+                        return (
+                            <div className='cell'>
+                                <Link to={`/movies/${mid}`} key={mid}>
+                                    <img src={poster===null ? image_unavailable : url + poster} alt={'poster: ' + movieTitle}/>
+                                    <h4>{movieTitle}</h4>
+                                </Link>
+                            </div>
+                        );
+                    })
+                }
+            </div>
         </section>
     );
 

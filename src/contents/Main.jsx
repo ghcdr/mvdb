@@ -6,23 +6,27 @@ import { Discover } from './Discover';
 import { Navigation, GoBack } from './Navigation';
 import { useGlobalState } from '../state';
 import { Loading } from './Loading';
+import { Search } from './Search';
 
 
 export const Main = () => {
-    const {waitingConfig} = useGlobalState();
+    const { waitingConfig, setNavItem } = useGlobalState();
     return (
         waitingConfig ? <Loading/> : 
         <main>
             <BrowserRouter>
                 <Navigation />
-                <Switch>
-                    <Route exact path="/" ><Redirect to="/home" /></Route>
-                    <Route exact path="/home" component={ Popular } />
-                    <Route exact path="/discover" component={ Discover } />
-                    <Route exact path="/movies/:id" component={ MovieAbout } />
-                    <Route path="*" component={ GoBack } />
-                </Switch>
-            </BrowserRouter>
+                <div className='body'>
+                    <Switch>
+                        <Route exact path="/" ><Redirect to="/home" /></Route>
+                        <Route exact path="/home" component={ Popular }  render = { () =>{ console.log('ass'); }}/>
+                        <Route exact path="/discover" component={ Discover } onUpdate={() => setNavItem('discover')}/>
+                        <Route exact path="/movies/:id" component={ MovieAbout } onUpdate={() => setNavItem('')}/>
+                        <Route exact path="/search" component={ Search } onUpdate={() => setNavItem('search')}/>
+                        <Route path="*" component={ GoBack } onUpdate={() => setNavItem('')}/>
+                    </Switch>
+                </div>
+            </BrowserRouter> 
         </main>
     );
 }

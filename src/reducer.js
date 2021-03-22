@@ -15,6 +15,12 @@ export const reducer = (state, action) => {
             searchTerm: action.payload
         };
     }
+    if(action.type === 'SET_NAV_ITEM')
+    {
+        return { ...state,
+            navItem: action.payload
+        };
+    }
     else
         throw Error(`No matching action for "${action.type}"`);
         
