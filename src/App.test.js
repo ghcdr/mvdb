@@ -1,8 +1,18 @@
 import { render, screen } from '@testing-library/react';
-import { Main } from './Main';
+import { App } from './contents/Main';
+import { createMemoryHistory } from 'history';
+import { Router } from 'react-router-dom';
 
-test('first test', () => {
-  render(<Main />);
-  const linkElement = screen.getByText(/home/);
-  expect(linkElement).toBeInTheDocument();
+
+test('Test home', () => {
+    const history = createMemoryHistory()
+    history.push('/home');
+    render(
+        <Router history={history}>
+            <App />
+        </Router>
+    );
+    screen.debug()
+    //const loading = screen.getByText('Loading...');
+    //expect(loading).toBeInTheDocument();
 });
