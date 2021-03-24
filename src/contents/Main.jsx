@@ -4,7 +4,7 @@ import { Popular } from './Popular';
 import { MovieAbout } from './Movie';
 import { Discover } from './Discover';
 import { Navigation, GoBack } from './Navigation';
-import { useGlobalState } from '../state';
+import { useGlobalState, GlobalStateProvider } from '../state';
 import { Loading } from './Loading';
 import { Search } from './Search';
 
@@ -28,5 +28,13 @@ export const Main = () => {
                 </div>
             </BrowserRouter> 
         </main>
+    );
+}
+
+export const App = () => {
+    return (
+        <GlobalStateProvider>
+            <Main />
+        </GlobalStateProvider>
     );
 }

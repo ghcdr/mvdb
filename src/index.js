@@ -2,15 +2,12 @@ import './index.css';
 import './styles.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Main } from './contents/Main';
-import { GlobalStateProvider } from './state';
+import { App } from './contents/Main';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStateProvider>
-      <Main />
-    </GlobalStateProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
