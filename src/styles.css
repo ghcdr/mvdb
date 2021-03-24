@@ -9,22 +9,11 @@
     overflow-y: scroll;
 	height: 90%;
   	width: 100%;
-	background: black;
+	background:white;
 	grid-template-areas: "nav" "body" "footer";
 	grid-template-rows: 1fr 5fr 1fr;
-	/*
-	height: 100vh;
-	width: 100vw;
-	display: grid;
-	grid-template-areas:"header header header"
-                        "left center right"
-                        "footer footer footer";
-	grid-template-rows: 1fr 3fr 1fr;
-	grid-template-columns: 1fr 2fr 1fr;*/
 }
-
 .navg {
-	
 	height: 100%;
 	width: 100%;
 	background: rgb(159, 116, 251);
@@ -32,7 +21,6 @@
 	align-items: center;
 	grid-area: "nav";
 }
-
 .nav-item {
 	margin-left: 100px;
 }
@@ -40,23 +28,57 @@
 /* Movie grid */
 .canvas {
 	background: rgb(255, 255, 255);
-	display: grid;
-	/*
-	width: 100vw;
-	height: 100vh;
-	*/
 }
 .grid {
-	/*
-	height: 100vh;
-	margin: 2rem;*/
 	display: grid;
+    box-sizing: border-box;
+    padding: 1.2rem;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
 	grid-gap: 1rem 1rem;
 }
 .cell {
-	background:rgba(171, 0, 0, 0.755);
+	background-color: lightgray;
+    /*border config*/
+    border-color: black;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 0.1rem;
+    padding: 1rem;
+
 	font-size: 3fr;
 	text-align: center;
+    
+}
+.cell img {
+    max-height: 90%;
+}
+
+/* Genres selector */
+.filters {
+    background-color: aliceblue;
+    /*evenly space*/
+    display: table;
+    width: 100%;
+    table-layout: auto;
+    /*border config*/
+    border-color: black;
+    border-style: solid;
+    border-width: 0.1rem;
+}
+.genre {
+    /*stack horizontaly*/
+    display: table-cell;
+    text-align: center;
+    /*border config*/
+    border-color: lightslategray;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 0.1rem;
+}
+.genre label {
+    grid-area: "label";
+}
+.genre input {
+    background-color: blueviolet;
 }

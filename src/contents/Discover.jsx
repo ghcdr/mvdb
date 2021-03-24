@@ -50,22 +50,20 @@ export const Discover = () => {
     // Render
     return (
         <article>
-            <form>
-                <div key='filters'>
-                    {
-                        genresList.map((val) => {
-                            const {id: gid, name: gname} = val;
-                            return (
-                                <div key={gid}>
-                                    <label>{gname}</label>
-                                    <input name={gname} defaultChecked={checkedGenres.current.has(gid)} type='checkbox' 
-                                        onClick={(cbx) => {handleCheck(cbx.target.checked, gid)}}/>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            </form>
+            <div class='filters' key='filters'>
+                {
+                    genresList.map((val) => {
+                        const {id: gid, name: gname} = val;
+                        return (
+                            <div key={gid} className='genre'>
+                                <label>{gname}</label>
+                                <input name={gname} defaultChecked={checkedGenres.current.has(gid)} type='checkbox' 
+                                    onClick={(cbx) => {handleCheck(cbx.target.checked, gid)}}/>
+                            </div>
+                        )
+                    })
+                }
+            </div>
             <section>
                 { 
                     pageLoading ? <Loading/> : (
