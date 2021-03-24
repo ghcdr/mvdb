@@ -67,7 +67,7 @@ export const Discover = () => {
             <section>
                 { 
                     pageLoading ? <Loading/> : (
-                        movieDisplay.length === 0 ? <div>Nothing found</div> : (
+                        movieDisplay.length === 0 && checkedGenres.current.size > 0 ? <div className='nothing-found'>Nothing found</div> : (
                             <MovieList movies={movieDisplay}/>
                         )
                     )

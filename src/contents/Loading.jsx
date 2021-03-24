@@ -2,6 +2,8 @@
 
 export const Loading = () => {
     return (
-        <span>Loading...</span>
+        <section className='loading'>
+            <div className='spin'></div>
+        </section>
     );
 }

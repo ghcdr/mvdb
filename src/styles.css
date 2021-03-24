@@ -1,3 +1,42 @@
+/* Loading spinner */
+.loading {
+    padding: 10%;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+@keyframes spinner {
+    0% {
+      transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    100% {
+      transform: translate3d(-50%, -50%, 0) rotate(360deg);
+    }
+}
+.loading .spin::before {
+    animation: 0.9s linear infinite spinner;
+    animation-play-state: inherit;
+    border: solid 1.9rem lightcyan;
+    border-bottom-color: dodgerblue;
+    border-radius: 50%;
+    content: "";
+    height: 16rem;
+    position: absolute;
+    transform: translate3d(-50%, -50%, 0);
+    width: 16rem;
+    will-change: transform;
+}
+
+
+
+/* TODO: nothing found message */
+
+.nothing-found {
+
+}
+
+
+
 /* Main page divisions */
 
 .body {
@@ -81,4 +120,27 @@
 }
 .genre input {
     background-color: blueviolet;
+}
+
+
+
+/* Movie about */
+
+.movie-about {
+    background-color: gainsboro;
+}
+.movie-about .title {
+    text-align: center;
+}
+.movie-about .backdrop {
+    background-color: black;
+
+}
+.movie-about .backdrop img {
+    margin: auto;
+    display: block;
+    width: 50%;
+}
+.movie-about .about {
+
 }

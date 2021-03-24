@@ -37,12 +37,14 @@ export const MovieAbout = () => {
     else
     {
         document.title = movieTitle;
+        console.log(details)
         return (
-            <section>
-                <img src={poster_url + poster} alt={'poster: ' + movieTitle} />
-                <img src={backdrop_url + backdrop_path} alt={'backdrop: ' + movieTitle} />
-                <h4>{movieTitle}</h4>
-                <p>{about}</p>
+            <section className='movie-about'>
+                <div className='backdrop'>
+                    <img src={backdrop_url + backdrop_path} alt={'backdrop: ' + movieTitle} />
+                </div>
+                <h4 className='title'>{movieTitle}</h4>
+                <p className='about'>{about}</p>
             </section>
         );
     }
