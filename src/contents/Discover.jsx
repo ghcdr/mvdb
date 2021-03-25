@@ -73,13 +73,6 @@ export const Discover = () => {
                     )
                 }
             </section>
-            {/*!(pageLoading || movieDisplay.length === 0) && (
-                <div>
-                    <button key='prev' onClick={() => {if(currPage.current === 1) return; currPage.current -= 1; movieQuery();}}>{'<'}</button>
-                    <label key='page'>{currPage.current}</label>
-                    <button key='next' onClick={() => {if(currPage.current === maxPage) return; currPage.current += 1; movieQuery();}}>{'>'}</button>
-                </div>
-            )*/}
             {!(pageLoading || movieDisplay.length === 0) && (
                 <Paging changePage={changeCurrentPage} curr={currentPage} max={maxPage}/>)}
         </article>

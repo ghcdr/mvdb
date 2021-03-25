@@ -3,33 +3,51 @@ import { useGlobalState } from '../state';
 
 
 export const Navigation = () => {
-    const { navItem } = useGlobalState();
 
-    return (//navbar-fixed-top
-        <nav className='navbar navbar-inverse'>
-            <div className='container-fluid'>
-                <div className='navbar-header'>
-                    <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='#myNavbar'>
-                        <span className='icon-bar'></span>
-                        <span className='icon-bar'></span>
-                        <span className='icon-bar'></span>                        
-                    </button>
-                    <Link to='/home' className='navbar-brand'>Movies and stuff</Link>
-                </div>
-                <div className='collapse navbar-collapse' id='myNavbar'>
-                    <ul className='nav navbar-nav'>
-                        <li className={'page-item'}><Link to='/home'>Home</Link></li>
-                        <li className={'page-item'}><Link to='/discover'>Discover</Link></li>
-                        <li className={'page-item'}><Link to='/search'>Search</Link></li>
-                    </ul>
-                </div>
-            </div>
+    const { navItem } = useGlobalState();
+    return (
+        <nav id='navigation' key='navigation' className='navigation'>
+            <Link key='home' className='nav-item' to='/home'><h1>Home</h1></Link>
+            <Link key='discover' className='nav-item' to='/discover'><h1>Discover</h1></Link>
+            <Link key='search' className='nav-item' to='/search'><h1>Search</h1></Link>
         </nav>
-    )
+    );
 
 };
 
-export const Paging = ({changePage, curr, max, reach = 7}) => {
+window.onscroll = () => callback();
+
+const getRGB = (str) => {
+    const isNum = /[0-9.]/;
+    let l = '', rgb = [];
+    for(let i = 0; i < str.length; ++i) {
+        while(isNum.test(str[i]) && i < str.length) {
+            l += str[i];
+            ++i;
+        }
+        if(l.length > 0) {
+            rgb.push(Number(l));
+            l = '';
+        }
+    }
+    return rgb;
+}
+
+const callback = () => {
+    const lment = document.getElementById("navigation");
+    const color = window.getComputedStyle(lment).backgroundColor;
+    const rgb = getRGB(color);
+    if(rgb.length > 3) rgb.pop();
+    if (document.documentElement.scrollTop > 100) {
+        lment.style.setProperty('background-color', 'rgba('+ rgb.join(', ') + ', 0.5)');
+    } 
+    else
+    if (document.documentElement.scrollTop < 100) {
+        lment.style.setProperty('background-color', 'rgba('+ rgb.join(', ') + ', 1.0)');
+    }
+}
+
+export const Paging = ({ changePage, curr, max, reach = 7 }) => {
 
     // Simple logic to cope with a range of values, which shifts every time the page changes, like
     // 1,'2',3 -> 2,'3',4
@@ -39,22 +57,22 @@ export const Paging = ({changePage, curr, max, reach = 7}) => {
         <nav className='container text-center'>
             <ul className='pagination centered'>
                 <li className='page-item'>
-                    <a className='page-item' tabIndex='-1' onClick={() => { if(curr !== 1) changePage(curr - 1)} }>Previous</a>
+                    <a className='page-item' tabIndex='-1' onClick={() => { if (curr !== 1) changePage(curr - 1) }}>Previous</a>
                 </li>
                 {
-                    Array(reach*2 - correct).fill().map((_, i) => {
+                    Array(reach * 2 - correct).fill().map((_, i) => {
                         const num = offset + i;
                         return (
-                        <li key={i} className={'page-item' + (num === curr ? ' active' : '')}>
-                            <a className='page-link'
-                            onClick={() => {changePage(num)} }
-                            >{num}</a>
-                        </li>
+                            <li key={i} className={'page-item' + (num === curr ? ' active' : '')}>
+                                <a className='page-link'
+                                    onClick={() => { changePage(num) }}
+                                >{num}</a>
+                            </li>
                         )
                     })
                 }
                 <li className='page-item'>
-                    <a className='page-item' onClick={() => { if(curr !== 1) changePage(curr + 1)} }>Next</a>
+                    <a className='page-item' onClick={() => { if (curr !== 1) changePage(curr + 1) }}>Next</a>
                 </li>
             </ul>
         </nav>
@@ -65,3 +83,7 @@ export const Paging = ({changePage, curr, max, reach = 7}) => {
 export const GoBack = () => {
     return <Link to='/home'><h2>Home</h2></Link>;
 };
+
+export const Footer = () => {
+    return <div className='footer'>footer</div>;
+}

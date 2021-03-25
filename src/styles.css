@@ -1,4 +1,6 @@
-/* Loading spinner */
+/* 
+Loading spinner 
+*/
 .loading {
     padding: 10%;
     text-align: center;
@@ -29,49 +31,71 @@
 
 
 
-/* TODO: nothing found message */
-
+/* 
+TODO: nothing found message 
+*/
 .nothing-found {
 
 }
 
 
-
-/* Main page divisions */
-
-.body {
-    position: absolute;
-    top: 60px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    overflow-y: scroll;
-	height: 90%;
+/* 
+    Main page divisions 
+*/
+.page {
+    height: 100%;
   	width: 100%;
-	background:white;
-	grid-template-areas: "nav" "body" "footer";
+    padding-top: 90px;
+	background-color: white;
+	grid-template-areas: "navigation"
+                        "content" 
+                         "footer";
 	grid-template-rows: 1fr 5fr 1fr;
 }
-.navg {
-	height: 100%;
-	width: 100%;
-	background: rgb(159, 116, 251);
-	display: flex;
-	align-items: center;
-	grid-area: "nav";
+.navigation {
+    overflow: hidden;
+    background-color:rgb(153, 205, 50);
+    position: fixed;
+    top: 0;
+    height: 90px;
+    width: 100%;
+    grid-area: "navigation";
 }
 .nav-item {
-	margin-left: 100px;
+    float: left;
+    display: block;
+    color: whitesmoke;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    text-align: center;
+    height: 100%;
+    font-size-adjust: 40px;
+}
+.nav-item:hover {
+    background: whitesmoke;
+    color: yellowgreen;
+}
+/* Adjust font size */
+.nav-item h4 {
+    font-size: large;
+}
+.footer {
+    grid-area: "footer";
+    background-color: mediumaquamarine;
+    height: 100%;
+	width: 100%;
 }
 
 /* Movie grid */
 .canvas {
 	background: rgb(255, 255, 255);
+    grid-area: "content";
 }
 .grid {
 	display: grid;
     box-sizing: border-box;
-    padding: 1.2rem;
+    padding: 2rem 1.2rem;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
 	grid-gap: 1rem 1rem;

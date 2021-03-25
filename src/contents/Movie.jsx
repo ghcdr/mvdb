@@ -63,7 +63,7 @@ export const MovieList = ({movies}) => {
                 {movies.map((mov) => {
                         const {id: mid, title: movieTitle, poster_path: poster} = mov;
                         return (
-                            <div className='cell'>
+                            <div key={mid} className='cell'>
                                 <Link to={`/movies/${mid}`} key={mid}>
                                     <img src={poster===null ? image_unavailable : url + poster} alt={'poster: ' + movieTitle}/>
                                     <h4>{movieTitle}</h4>
