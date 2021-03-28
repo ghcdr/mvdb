@@ -51,7 +51,7 @@ export const Search = () => {
     return (
         <article id='search' className='search-results'>
             <div className='search-bar-frame' >
-                <input id='title' className='search-bar' name='title' type='text' onChange={(inp) => { updateSearchTerm(inp.target.value); }}/>
+                <input id='title' className='search-bar' name='title' type='text' placeholder="Search" onChange={(inp) => { updateSearchTerm(inp.target.value); }}/>
             </div>
             { 
                 pageLoading ? <Loading/> : (

@@ -52,7 +52,7 @@ TODO: nothing found message
 
 .page {
     height: 100vh;
-    width: 100vw;
+    /*width: 100vw;*/
     padding-top: 90px;
 	background-color: rgb(206, 26, 26);
 	grid-template-areas: "content" 
