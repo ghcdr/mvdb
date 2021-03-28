@@ -1,3 +1,10 @@
+* {
+    box-sizing: border-box;
+}
+a:link, a:hover, a:visited, a:active, a:focus, a:focus-visible {
+    text-decoration: none;
+}
+
 /* 
 Loading spinner 
 */
@@ -35,23 +42,41 @@ Loading spinner
 TODO: nothing found message 
 */
 .nothing-found {
-
+    text-align: center;
 }
 
 
 /* 
     Main page divisions 
 */
+
 .page {
+    height: 100vh;
+    width: 100vw;
+    padding-top: 90px;
+	background-color: rgb(206, 26, 26);
+	grid-template-areas: "content" 
+                         "footer";
+	grid-template-rows: 20fr 1fr;
+    display: grid;
+    
+}
+.content {
+    background-color: blueviolet;
+    grid-area: "content";
     height: 100%;
   	width: 100%;
-    padding-top: 90px;
-	background-color: white;
-	grid-template-areas: "navigation"
-                        "content" 
-                         "footer";
-	grid-template-rows: 1fr 5fr 1fr;
+    display: inline-block;
 }
+.footer {
+    grid-area: "footer";
+    background-color: mediumaquamarine;
+    height: 100%;
+	width: 100%;
+    display: inline-block;
+}
+
+
 .navigation {
     overflow: hidden;
     background-color:rgb(153, 205, 50);
@@ -59,9 +84,8 @@ TODO: nothing found message
     top: 0;
     height: 90px;
     width: 100%;
-    grid-area: "navigation";
 }
-.nav-item {
+.nav-item, .nav-item-selected {
     float: left;
     display: block;
     color: whitesmoke;
@@ -72,20 +96,20 @@ TODO: nothing found message
     height: 100%;
     font-size-adjust: 40px;
 }
-.nav-item:hover {
+.nav-item a:hover, .nav-item a:link {
     background: whitesmoke;
+    color: yellowgreen;
+}
+.nav-item-selected {
+    background:rgb(6, 48, 120);
     color: yellowgreen;
 }
 /* Adjust font size */
 .nav-item h4 {
     font-size: large;
 }
-.footer {
-    grid-area: "footer";
-    background-color: mediumaquamarine;
-    height: 100%;
-	width: 100%;
-}
+
+
 
 /* Movie grid */
 .canvas {
@@ -147,6 +171,33 @@ TODO: nothing found message
 }
 
 
+/* Movie search */
+.search-results {
+    background-color:white;
+    display: inline-block;
+    grid-area: "content";
+    height: 100%;
+	width: 100%;
+}
+.search-bar-frame {
+    display: block;
+    padding: 10px 10px;
+}
+.search-bar {
+    border: 2.4px solid lightblue;
+    border-radius: 10px;
+    height: 40px;
+    width: 50%;
+    padding: 2px 23px 2px 30px;
+    outline: 0;
+    background-color: whitesmoke;
+    display: block;
+    margin: 0 auto;
+}
+.search-bar:hover, .search-bar:focus {
+    border: 1.8px solid #0978ff;
+    background-color: rgb(255, 255, 255);
+}
 
 /* Movie about */
 

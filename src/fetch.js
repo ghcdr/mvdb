@@ -11,6 +11,7 @@ export const fetchSome = async (path="", param={}) => {
     const req = new Request(url.toString(), { method: 'GET' });
     const response = await fetch(req);
     const data = await response.json();
+    if(!response.ok) throw "Bad request";
     return data;
 };
 

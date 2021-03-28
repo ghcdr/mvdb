@@ -12,11 +12,11 @@ import { Search } from './Search';
 export const Main = () => {
     const { waitingConfig } = useGlobalState();
     return (
-        waitingConfig ? <Loading/> : 
+        waitingConfig ? <Loading/> : (
             <BrowserRouter>
             <Navigation />
                 <main className='page'>
-                    <div>
+                    <div className='content'>
                         <Switch>
                             <Route exact path="/" ><Redirect to="/home" /></Route>
                             <Route exact path="/home" component={ Popular } />
@@ -26,9 +26,10 @@ export const Main = () => {
                             <Route path="*" component={ GoBack } />
                         </Switch>
                     </div>
+                    <Footer />
                 </main>
-                <Footer />
             </BrowserRouter>
+        )
     );
 }
 

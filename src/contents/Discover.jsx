@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { fetchSome } from '../fetch';
 import { useGlobalState } from '../state';
-import { Loading } from './Loading';
+import { Loading, NothingFound } from './Loading';
 import { MovieList } from './Movie';
 import { Paging } from './Navigation';
 
@@ -50,7 +50,7 @@ export const Discover = () => {
     // Render
     return (
         <article>
-            <div class='filters' key='filters'>
+            <div className='filters' key='filters'>
                 {
                     genresList.map((val) => {
                         const {id: gid, name: gname} = val;
@@ -67,7 +67,7 @@ export const Discover = () => {
             <section>
                 { 
                     pageLoading ? <Loading/> : (
-                        movieDisplay.length === 0 && checkedGenres.current.size > 0 ? <div className='nothing-found'>Nothing found</div> : (
+                        movieDisplay.length === 0 && checkedGenres.current.size > 0 ? <NothingFound /> : (
                             <MovieList movies={movieDisplay}/>
                         )
                     )

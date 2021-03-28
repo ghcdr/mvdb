@@ -7,3 +7,9 @@ export const Loading = () => {
         </section>
     );
 }
+
+export const NothingFound = () => {
+    return (
+        <div className='nothing-found'><h1>Nothing found</h1></div>
+    );
+}

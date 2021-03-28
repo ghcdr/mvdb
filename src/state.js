@@ -8,7 +8,7 @@ export const GlobalState = React.createContext();
 const state0 = {
     storedGenres: new Set([]), // list of checked movie genres
     searchTerm: '',
-    navItem: 'home',
+    navItem: '',
 };
 
 export const GlobalStateProvider = ({ children }) => {

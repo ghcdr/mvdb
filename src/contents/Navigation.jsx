@@ -1,15 +1,27 @@
-import { Link } from 'react-router-dom';
-import { useGlobalState } from '../state';
+import { Link, useLocation } from 'react-router-dom';
+import { matchPath } from 'react-router';
+import { useEffect } from 'react';
 
 
 export const Navigation = () => {
 
-    const { navItem } = useGlobalState();
+    const location = useLocation();
+
+    useEffect(() => {
+        // trigger navbar re-render, to change button highlight
+      }, [location]);
+
+    const selected = (p) => { return matchPath(p, {
+            path: window.location.pathname,
+            exact: true,
+            strict: true
+        });
+    }
     return (
         <nav id='navigation' key='navigation' className='navigation'>
-            <Link key='home' className='nav-item' to='/home'><h1>Home</h1></Link>
-            <Link key='discover' className='nav-item' to='/discover'><h1>Discover</h1></Link>
-            <Link key='search' className='nav-item' to='/search'><h1>Search</h1></Link>
+            <Link key='home' className={selected('/home') ? 'nav-item-selected' : 'nav-item'} to='/home'><h1>Home</h1></Link>
+            <Link key='discover' className={selected('/discover') ? 'nav-item-selected' : 'nav-item'} to='/discover'><h1>Discover</h1></Link>
+            <Link key='search' className={selected('/search') ? 'nav-item-selected' : 'nav-item'} to='/search'><h1>Search</h1></Link>
         </nav>
     );
 
@@ -30,6 +42,7 @@ const getRGB = (str) => {
             l = '';
         }
     }
+    if(rgb.length > 3) rgb.pop();
     return rgb;
 }
 
@@ -37,7 +50,6 @@ const callback = () => {
     const lment = document.getElementById("navigation");
     const color = window.getComputedStyle(lment).backgroundColor;
     const rgb = getRGB(color);
-    if(rgb.length > 3) rgb.pop();
     if (document.documentElement.scrollTop > 100) {
         lment.style.setProperty('background-color', 'rgba('+ rgb.join(', ') + ', 0.5)');
     } 

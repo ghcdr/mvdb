@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useGlobalState } from '../state';
-import { Loading } from './Loading';
+import { Loading, NothingFound } from './Loading';
 import { fetchSome } from '../fetch';
 import { MovieList } from './Movie';
 import { Paging } from './Navigation';
@@ -25,19 +25,19 @@ export const Search = () => {
             if (currentPage > 1)
                 setPageLoading(true);
             const movies = await fetchSome('search/movie', {
-                query: searchString.current.length > 0 ? searchString.current : null,
+                query: searchString.current.length > 0 ? searchString.current : 'A',
                 page: currentPage,
             });
-            console.log(movies)
             setMovieDisplay(movies['results']);
             setMaxPage(movies['total_pages']);
         } catch (err) {
-            console.log()
+            console.log(err)
         }
         setPageLoading(false);
     };
     // Register cleanup callback
     useEffect(() => {
+        movieQuery();
         return () => {
             storeSearchTerm(searchString.current);
         }
@@ -49,11 +49,13 @@ export const Search = () => {
     };
     // Render
     return (
-        <article name='search-results'>
-            <input id='title' name='title' type='text' onChange={(inp) => { updateSearchTerm(inp.target.value); }}/>
+        <article id='search' className='search-results'>
+            <div className='search-bar-frame' >
+                <input id='title' className='search-bar' name='title' type='text' onChange={(inp) => { updateSearchTerm(inp.target.value); }}/>
+            </div>
             { 
                 pageLoading ? <Loading/> : (
-                    movieDisplay.length === 0 ? <div>Nothing found</div> : (
+                    movieDisplay.length === 0 ? <NothingFound /> : (
                         <MovieList movies={movieDisplay}/>
                     )
                 )
