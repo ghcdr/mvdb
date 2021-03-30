@@ -29,7 +29,6 @@ export const Discover = () => {
             // Only wait for other page if it's not the first one
             if(currentPage > 1) 
                 setPageLoading(true);
-            //let movies = {'results': [], 'total_pages': 0};
             const movies = await fetchSome('discover/movie', {
                 with_genres: checkedGenres.current.size > 0 ? Array.from(checkedGenres.current).toString() : null,
                 page: currentPage,
@@ -37,13 +36,15 @@ export const Discover = () => {
             setMovieDisplay(movies['results']);
             setMaxPage(movies['total_pages']);
         } catch (err) {
-            console.log()
+            console.log(err)
+            changeCurrentPage(1);
         }
         setPageLoading(false);
     };
     // Hangle inputs
     const handleCheck = (checked, gid) => {
         checked ? checkedGenres.current.add(gid) : checkedGenres.current.delete(gid);
+        changeCurrentPage(1);
         movieQuery();
     };
     useEffect(() => {movieQuery();}, [currentPage]);

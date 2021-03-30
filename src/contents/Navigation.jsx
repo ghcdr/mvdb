@@ -60,11 +60,10 @@ const callback = () => {
 }
 
 export const Paging = ({ changePage, curr, max, reach = 7 }) => {
-
-    // Simple logic to cope with a range of values, which shifts every time the page changes, like
+    // shifts every time the page changes, like
     // 1,'2',3 -> 2,'3',4
     const offset = Math.max(curr - reach, 0) + 1;
-    const correct = curr + reach > max ? reach - (curr + reach - max) : 0;
+    const correct = (curr + reach) > max ? reach - (curr + reach - max) : 0;
     return (
         <nav className='container text-center'>
             <ul className='pagination centered'>
@@ -72,7 +71,7 @@ export const Paging = ({ changePage, curr, max, reach = 7 }) => {
                     <a className='page-item' tabIndex='-1' onClick={() => { if (curr !== 1) changePage(curr - 1) }}>Previous</a>
                 </li>
                 {
-                    Array(reach * 2 - correct).fill().map((_, i) => {
+                    Array(Math.min(curr, reach) + Math.min(reach, max - curr)).fill().map((_, i) => {
                         const num = offset + i;
                         return (
                             <li key={i} className={'page-item' + (num === curr ? ' active' : '')}>
@@ -84,7 +83,7 @@ export const Paging = ({ changePage, curr, max, reach = 7 }) => {
                     })
                 }
                 <li className='page-item'>
-                    <a className='page-item' onClick={() => { if (curr !== 1) changePage(curr + 1) }}>Next</a>
+                    <a className='page-item' onClick={() => { if (curr !== max) changePage(curr + 1) }}>Next</a>
                 </li>
             </ul>
         </nav>

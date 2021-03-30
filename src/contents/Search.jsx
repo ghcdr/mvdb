@@ -14,7 +14,8 @@ export const Search = () => {
     const searchString = useRef(searchTerm);
     // For paging functionality
     const [maxPage, setMaxPage] = useState(0);
-    const [pageLoading, setPageLoading] = useState(false);
+    // Set true, to avoid displaying that nothing was found at first
+    const [pageLoading, setPageLoading] = useState(true);
     const [currentPage, changeCurrentPage] = useState(1);
     // Where query results are stored
     const [movieDisplay, setMovieDisplay] = useState([]);
