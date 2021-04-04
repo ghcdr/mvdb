@@ -62,20 +62,22 @@ const callback = () => {
 export const Paging = ({ changePage, curr, max, reach = 7 }) => {
     // shifts every time the page changes, like
     // 1,'2',3 -> 2,'3',4
-    const size = max < reach ? max - curr : 2*reach;
-    const offset = 1 + (curr + reach >= max ? max - 2*reach : Math.max(0, curr - reach));
+    const size = max < 2*reach ? max - curr + 1 : 2*reach;
+    const offset = curr;
     return (
         <nav role='paging' className='container text-center'>
             <ul role='paging-buttons' className='pagination centered'>
                 <li className='page-item'>
-                    <a className='page-item' tabIndex='-1' onClick={() => { if (curr !== 1) changePage(curr - 1) }}>Previous</a>
+                    <a className='page-item' href='#' tabIndex='-1' onClick={() => { if (curr !== 1) changePage(curr - 1) }}>
+                        Previous
+                    </a>
                 </li>
                 {
                     Array(size).fill().map((_, i) => {
                         const num = offset + i;
                         return (
                             <li key={i} className={'page-item' + (num === curr ? ' active' : '')}>
-                                <a className='page-link'
+                                <a className='page-link' href='#'
                                     onClick={() => { changePage(num) }}
                                 >{num}</a>
                             </li>
@@ -83,7 +85,9 @@ export const Paging = ({ changePage, curr, max, reach = 7 }) => {
                     })
                 }
                 <li className='page-item'>
-                    <a className='page-item' onClick={() => { if (curr !== max) changePage(curr + 1) }}>Next</a>
+                    <a className='page-item' href='#' onClick={() => { if (curr !== max) changePage(curr + 1) }}>
+                        Next
+                    </a>
                 </li>
             </ul>
         </nav>
