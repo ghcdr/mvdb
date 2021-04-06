@@ -33,9 +33,14 @@ export const Search = () => {
             setMaxPage(movies['total_pages']);
         } catch (err) {
             console.log(err)
+            changeCurrentPage(1);
         }
         setPageLoading(false);
     };
+    // Trigger new page fetching
+    useEffect(() => {
+        movieQuery();
+    }, [currentPage]);
     // Register cleanup callback
     useEffect(() => {
         movieQuery();
@@ -51,19 +56,34 @@ export const Search = () => {
     // Render
     return (
         <article id='search' className='search-results'>
-            <div className='search-bar-frame' >
+            <div key='search-bar' className='search-bar-frame' >
                 <input id='title' className='search-bar' name='title' type='text' placeholder="Search" onChange={(inp) => { updateSearchTerm(inp.target.value); }}/>
             </div>
+            <div key='search-results'>
+                <SearchResults param={{movieDisplay, pageLoading, changeCurrentPage, currentPage, maxPage}}/>
+            </div>
+        </article>
+    );
+
+};
+
+
+export const SearchResults = ({param}) => {
+
+    const {movieDisplay,  pageLoading, changeCurrentPage, currentPage, maxPage} = param;
+    return (
+        <div key='results'>
             { 
                 pageLoading ? <Loading/> : (
                     movieDisplay.length === 0 ? <NothingFound /> : (
                         <MovieList movies={movieDisplay}/>
                     )
                 )
+            }{
+                !(pageLoading || movieDisplay.length === 0) && (
+                    <Paging changePage={changeCurrentPage} curr={currentPage} max={maxPage}/>)
             }
-            {!(pageLoading || movieDisplay.length === 0) && (
-                <Paging changePage={changeCurrentPage} curr={currentPage} max={maxPage}/>)}
-        </article>
+        </div>
     );
 
 };

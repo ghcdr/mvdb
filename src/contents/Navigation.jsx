@@ -59,11 +59,11 @@ const callback = () => {
     }
 }
 
-export const Paging = ({ changePage, curr, max, reach = 7 }) => {
+export const Paging = ({ changePage, curr, max, reach = 5 }) => {
     // shifts every time the page changes, like
     // 1,'2',3 -> 2,'3',4
-    const size = max < 2*reach ? max - curr + 1 : 2*reach;
-    const offset = curr;
+    const size = max < 2 * reach ? max : 2 * reach;
+    const offset = curr < reach ? 1 : max - curr < reach ? Math.max(0, max - 2 * reach) + 1 : curr - reach + 1;
     return (
         <nav role='paging' className='container text-center'>
             <ul role='paging-buttons' className='pagination centered'>

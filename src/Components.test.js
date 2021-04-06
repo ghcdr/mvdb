@@ -1,5 +1,5 @@
 import { getByRole, render, screen, within, cleanup, fireEvent } from '@testing-library/react';
-import { Paging, Navigation } from './contents/Navigation';
+import { Paging } from './contents/Navigation';
 import { useState } from 'react';
 
 
